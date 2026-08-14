@@ -703,7 +703,9 @@ bool display_output_wayland::initialize() {
             global_window->surface,
             wl_globals.layer_shell,
             static_cast<uint32_t>(layer_for_window()),
-            "conky",
+            own_window_type.get(*state) == window_type::DESKTOP
+                ? "desktop"
+                : "conky",
         });
   } else {
     if (!hints_layer_shell) {
