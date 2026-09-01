@@ -696,6 +696,25 @@ bool display_output_wayland::initialize() {
       !hints_require_layer_shell();
   auto on_close = []() { g_sigterm_pending = 1; };
 
+  // Default the namespace from the type; an explicit value overrides it.
+  std::string namespace_str = own_window_namespace.get(*state);
+  if (namespace_str.empty()) {
+    switch (own_window_type.get(*state)) {
+      case window_type::DESKTOP:
+        namespace_str = "desktop";
+        break;
+      case window_type::DOCK:
+        namespace_str = "dock";
+        break;
+      case window_type::PANEL:
+        namespace_str = "panel";
+        break;
+      default:
+        namespace_str = PACKAGE_NAME;
+        break;
+    }
+  }
+
   if (!hints_layer_shell && wl_globals.layer_shell != nullptr) {
     global_window->shell =
         conky::create_shell_surface<conky::layer_shell_surface>({
@@ -703,9 +722,7 @@ bool display_output_wayland::initialize() {
             global_window->surface,
             wl_globals.layer_shell,
             static_cast<uint32_t>(layer_for_window()),
-            own_window_type.get(*state) == window_type::DESKTOP
-                ? "desktop"
-                : "conky",
+            namespace_str.c_str(),
         });
   } else {
     if (!hints_layer_shell) {

@@ -504,6 +504,14 @@ values:
     default: normal
     args:
       - (normal|desktop|dock|panel|utility|override)
+  - name: own_window_namespace
+    desc: |-
+      Set the wlr-layer-shell namespace of the window. KWin derives the window
+      class from this, which controls Show Desktop and window-snapping. When
+      unset, it defaults to 'desktop', 'dock' or 'panel' for the matching
+      [`own_window_type`](#own_window_type), or 'conky' otherwise. Set it
+      explicitly to decouple the window class from the layer.
+    default: ''
   - name: pad_percents
     desc: Pad percentages to this many decimals (0 = no padding).
   - name: pop3
