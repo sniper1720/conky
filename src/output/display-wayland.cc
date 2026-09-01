@@ -696,23 +696,12 @@ bool display_output_wayland::initialize() {
       !hints_require_layer_shell();
   auto on_close = []() { g_sigterm_pending = 1; };
 
-  // Default the namespace from the type; an explicit value overrides it.
+  // KWin classifies the layer-shell surface from its namespace. Keep the
+  // classic namespace unless the user opts into another via
+  // own_window_namespace, so existing configs are unaffected.
   std::string namespace_str = own_window_namespace.get(*state);
   if (namespace_str.empty()) {
-    switch (own_window_type.get(*state)) {
-      case window_type::DESKTOP:
-        namespace_str = "desktop";
-        break;
-      case window_type::DOCK:
-        namespace_str = "dock";
-        break;
-      case window_type::PANEL:
-        namespace_str = "panel";
-        break;
-      default:
-        namespace_str = PACKAGE_NAME;
-        break;
-    }
+    namespace_str = PACKAGE_NAME;
   }
 
   if (!hints_layer_shell && wl_globals.layer_shell != nullptr) {

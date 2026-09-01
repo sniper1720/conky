@@ -21,7 +21,7 @@ set(RELEASE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 # conky (carries #2431 + #2432 + own_window_namespace). Revert to plain
 # ${RELEASE_VERSION} once those land upstream and this release branch is retired.
 if(RELEASE)
-  set(VERSION "${RELEASE_VERSION}-patched.2")
+  set(VERSION "${RELEASE_VERSION}-patched.3")
 else(RELEASE)
   set(VERSION
     "${RELEASE_VERSION}-pre-${GIT_SHORT_SHA}")
