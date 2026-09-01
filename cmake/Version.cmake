@@ -18,10 +18,10 @@ execute_process(COMMAND ${APP_GIT} rev-parse --short HEAD
 set(RELEASE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 # The "-patched" suffix marks this fork's temporary bridge build over upstream
-# conky (carries #2431 + #2432). Revert to plain ${RELEASE_VERSION} once those
-# land upstream and this release branch is retired.
+# conky (carries #2431 + #2432 + own_window_namespace). Revert to plain
+# ${RELEASE_VERSION} once those land upstream and this release branch is retired.
 if(RELEASE)
-  set(VERSION "${RELEASE_VERSION}-patched.1")
+  set(VERSION "${RELEASE_VERSION}-patched.2")
 else(RELEASE)
   set(VERSION
     "${RELEASE_VERSION}-pre-${GIT_SHORT_SHA}")
