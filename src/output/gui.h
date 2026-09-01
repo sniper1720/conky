@@ -224,6 +224,8 @@ extern conky::simple_config_setting<std::string> own_window_class;
 /// @see window_type
 extern conky::simple_config_setting<window_type> own_window_type;
 
+extern conky::simple_config_setting<std::string> own_window_namespace;
+
 extern priv::colour_setting background_colour;
 
 Colour get_background_colour_preference(lua::state &l);
