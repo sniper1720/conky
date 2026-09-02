@@ -513,7 +513,9 @@ values:
       are treated as a normal window. When unset, 'conky' is used. To keep
       conky visible during Show Desktop while staying above the wallpaper,
       set this to 'desktop' and keep [`own_window_type`](#own_window_type)
-      at 'normal'.
+      at 'normal'. On KDE Plasma, 'dock' is elevated by the slide effect
+      (shouldElevate() in slide.cpp) while switching virtual desktops,
+      so 'desktop' keeps conky in the background throughout.
     default: 'conky'
   - name: pad_percents
     desc: Pad percentages to this many decimals (0 = no padding).
