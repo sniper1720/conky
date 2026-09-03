@@ -191,7 +191,7 @@ conky::simple_config_setting<window_type> own_window_type("own_window_type",
 
 #if defined(BUILD_WAYLAND)
 conky::simple_config_setting<std::string> own_window_namespace(
-    "own_window_namespace", "", false);
+    "own_window_namespace", PACKAGE_NAME, false);
 #endif /* BUILD_WAYLAND */
 
 #if defined(OWN_WINDOW) || defined(BUILD_WAYLAND)

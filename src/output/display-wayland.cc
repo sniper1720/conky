@@ -700,9 +700,6 @@ bool display_output_wayland::initialize() {
   // classic namespace unless the user opts into another via
   // own_window_namespace, so existing configs are unaffected.
   std::string namespace_str = own_window_namespace.get(*state);
-  if (namespace_str.empty()) {
-    namespace_str = PACKAGE_NAME;
-  }
 
   if (!hints_layer_shell && wl_globals.layer_shell != nullptr) {
     global_window->shell =
